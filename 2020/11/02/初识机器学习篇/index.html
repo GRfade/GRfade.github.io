@@ -258,6 +258,8 @@
         <p>本文将简单介绍机器学习，以及机器学习的简单算法</p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>机器学习研究和构建的是一种特殊算法（<strong>而非某一个特定的算法</strong>），能够让计算机自己在数据中学习从而进行预测。</p>
 <a id="more"></a>
+
+
 <hr>
 <h3 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h3><p>机器学习算法主要分为<strong>监督学习类算法</strong>和<strong>非监督学习类算法</strong></p>
 <p><strong>监督学习</strong>：对已有的数据已经有很好的分类或者划分，通过学习已有数据的分类规律从而推断出新数据的分类。</p>
@@ -478,9 +480,14 @@
                 console.error('Failed to save visitor count', error);
               });
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
-            
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
           }
         })
         .catch(error => {
@@ -507,7 +514,7 @@
         });
     }
 
-    let { app_id, app_key, server_url } = {"enable":true,"app_id":"Kcpuq9YwYXhgbQYiLL8hWkKC-gzGzoHsz","app_key":"lpRToeIcIqE60qxjKk5BbMwc","server_url":null,"security":true};
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"Kcpuq9YwYXhgbQYiLL8hWkKC-gzGzoHsz","app_key":"lpRToeIcIqE60qxjKk5BbMwc","server_url":null,"security":false};
     function fetchData(api_server) {
       var Counter = (method, url, data) => {
         return fetch(`${api_server}/1.1${url}`, {

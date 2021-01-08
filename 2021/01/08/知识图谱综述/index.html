@@ -20,24 +20,26 @@
     var CONFIG = {"hostname":"grfade.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="简单来说， 逻辑回归（Logistic Regression）是一种用于解决二分类（0 or 1）问题的机器学习方法，用于估计某种事物的可能性。比如某用户购买某商品的可能性，某病人患有某种疾病的可能性，以及某广告被用户点击的可能性等。 注意，这里用的是“可能性”，而非数学上的“概率”，logisitc回归的结果并非数学定义中的概率值，不可以直接当做概率值来用。该结果往往用于和其他特征值加权求和，而">
+  <meta name="description" content="摘要本篇为介绍一些知识图谱综述论文，同时简单介绍知识图谱这一研究领域。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈LogisticRegression算法">
-<meta property="og:url" content="https://grfade.github.io/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="知识图谱综述">
+<meta property="og:url" content="https://grfade.github.io/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/index.html">
 <meta property="og:site_name" content="原来你在这里啊">
-<meta property="og:description" content="简单来说， 逻辑回归（Logistic Regression）是一种用于解决二分类（0 or 1）问题的机器学习方法，用于估计某种事物的可能性。比如某用户购买某商品的可能性，某病人患有某种疾病的可能性，以及某广告被用户点击的可能性等。 注意，这里用的是“可能性”，而非数学上的“概率”，logisitc回归的结果并非数学定义中的概率值，不可以直接当做概率值来用。该结果往往用于和其他特征值加权求和，而">
+<meta property="og:description" content="摘要本篇为介绍一些知识图谱综述论文，同时简单介绍知识图谱这一研究领域。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://grfade.github.io/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/different.png">
-<meta property="og:image" content="https://grfade.github.io/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/19104051-5f57e2a2e0624faf9644c3f57aec467b.png">
-<meta property="article:published_time" content="2020-11-03T09:32:07.000Z">
-<meta property="article:modified_time" content="2021-01-08T12:03:52.506Z">
+<meta property="og:image" content="https://grfade.github.io/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱技术架构.png">
+<meta property="og:image" content="https://grfade.github.io/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱综述.png">
+<meta property="og:image" content="https://grfade.github.io/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱推理.png">
+<meta property="og:image" content="https://grfade.github.io/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱补全.png">
+<meta property="article:published_time" content="2021-01-08T09:32:16.000Z">
+<meta property="article:modified_time" content="2021-01-08T12:04:59.157Z">
 <meta property="article:author" content="GR">
-<meta property="article:tag" content="机器学习">
-<meta property="article:tag" content="监督学习">
+<meta property="article:tag" content="知识图谱">
+<meta property="article:tag" content="综述">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://grfade.github.io/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/different.png">
+<meta name="twitter:image" content="https://grfade.github.io/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱技术架构.png">
 
-<link rel="canonical" href="https://grfade.github.io/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/">
+<link rel="canonical" href="https://grfade.github.io/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/">
 
 
 <script id="page-configurations">
@@ -50,7 +52,7 @@
   };
 </script>
 
-  <title>浅谈LogisticRegression算法 | 原来你在这里啊</title>
+  <title>知识图谱综述 | 原来你在这里啊</title>
   
 
 
@@ -171,7 +173,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://grfade.github.io/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://grfade.github.io/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/photo.jpg">
@@ -184,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          浅谈LogisticRegression算法
+          知识图谱综述
         </h1>
 
         <div class="post-meta">
@@ -193,28 +195,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-11-03 17:32:07" itemprop="dateCreated datePublished" datetime="2020-11-03T17:32:07+08:00">2020-11-03</time>
+              <time title="创建时间：2021-01-08 17:32:16 / 修改时间：20:04:59" itemprop="dateCreated datePublished" datetime="2021-01-08T17:32:16+08:00">2021-01-08</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-08 20:03:52" itemprop="dateModified" datetime="2021-01-08T20:03:52+08:00">2021-01-08</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" itemprop="url" rel="index"><span itemprop="name">知识图谱</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="浅谈LogisticRegression算法" title="阅读次数">
+            <span id="/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="知识图谱综述" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -229,8 +225,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -240,14 +236,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>927</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -259,43 +255,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>简单来说， 逻辑回归（Logistic Regression）是一种用于解决二分类（0 or 1）问题的机器学习方法，用于估计某种事物的可能性。比如某用户购买某商品的可能性，某病人患有某种疾病的可能性，以及某广告被用户点击的可能性等。 注意，这里用的是“可能性”，而非数学上的“概率”，logisitc回归的结果并非数学定义中的概率值，不可以直接当做概率值来用。该结果往往用于和其他特征值加权求和，而非直接相乘。</p>
+        <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>本篇为介绍一些知识图谱综述论文，同时简单介绍知识图谱这一研究领域。</p>
 <a id="more"></a>
-<h5 id="线性回归和逻辑回归区别："><a href="#线性回归和逻辑回归区别：" class="headerlink" title="线性回归和逻辑回归区别："></a>线性回归和逻辑回归区别：</h5><p><img src="/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/different.png" alt="difference"></p>
-<h5 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h5><p>属于监督学习当中的分类算法。<br>逻辑回归算法名字里看似有回归两个字，但其实是属于分类算法，因为该算法将数据通过分类器分成两类，所以常常用于二分类。</p>
-<h3 id="逻辑回归："><a href="#逻辑回归：" class="headerlink" title="逻辑回归："></a>逻辑回归：</h3><h4 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h4><p>首先我先来阐述逻辑回归算法的作用，通过逻辑回归我能得到什么。</p>
-<p>如果我现在有m个n+1维数据，对于每一个数据前n维为该数据的各种特征，最后一维为对该数据的分类，而且该分类的特点是只有两个分类，即是和否的关系。</p>
-<p>现在我希望能通过一个算法预测下一个数据的分类，已知m个n+1维数据和下一个数据的n维特征，那么逻辑回归算法就是一个很好的算法。</p>
-<h4 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h4><p><strong>首先</strong>，借助某一个函数F实现分类器效果，即将数据集进行分类（二分类），对于该函数我们的要求为：可接受数据的所有特征作为输入，经过函数运算，实现输出为0或者1(即完成分类效果)</p>
-<p>​    符合上述要求的函数被称之为海维塞德阶跃函数（Heaviside step function）或者被称为单位阶跃函数。</p>
-<p>​    这里选择最具代表性的函数之一Sigmoid函数 ，通过sigmoid函数实现分类器效果,该函数如下所示：</p>
-<script type="math/tex; mode=display">h_\theta(x) = g (z) = \frac{1}{1+e^{-z}}         (1)</script><script type="math/tex; mode=display">z = \theta^{T}X    (2)</script><p><img src="/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/19104051-5f57e2a2e0624faf9644c3f57aec467b.png" alt="sigmoid"><br>    如图可以显然看出对于$z\inR$映射在了（0,1）区间内，对于大于0.5的值可以视为标签为1，小于0.5的值视为标签为0。</p>
-<p>​    公式(1)被称之为假设函数，该函是一个分类器将数据导入该函数，若结果大于0.5则归为1类，若小于0.5则归为0类，而z的选择有多种，这里选择最简单的z=θ^T X方程。</p>
-<p>​    z=θ^T X被称之为决策边界，最简单的决策边界为一个超平面，若为复杂的决策边界，可以得到更加准确的分类。</p>
-<p><strong>其次</strong>，对于假设函数我们需要对其系数进行训练，来使其准确率获得上升，对其系数进行训练的也是通过某一个函数实现，衡量训练好坏的标准用一个函数表示，该函数一般称之为代价函数（Cost Function）,代价函数为关于参数的函数，自变量为参数，因变量为衡量参数是否准确的标准。</p>
-<p>代价函数通式为： <script type="math/tex">J(\theta) = \frac{1}{m} \sum_{i=1}^{m}cost(h_{\theta}(x^{i}),y)</script>,</p>
-<p>代价函数的构建有很多种。我认为要求有两个：</p>
+<h3 id="知识图谱简介"><a href="#知识图谱简介" class="headerlink" title="知识图谱简介"></a>知识图谱简介</h3><p><img src="/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱技术架构.png" alt="KG"></p>
+<p>该图全面展示了知识图谱的所有研究方向，以及一个知识图谱的构建过程以及后期的维护、更新、发展、完善的过程。</p>
+<p><strong>数据</strong>：</p>
 <ul>
-<li>可以衡量拟合度，就要求代价函数有最值</li>
-<li>可以对参数求导，这样方便迭代</li>
+<li>结构化数据</li>
+<li>非结构化数据</li>
+<li>半结构化数据</li>
 </ul>
-<p>在逻辑回归算法当中代价函数如下：</p>
-<script type="math/tex; mode=display">cost(h_{\theta}(x^{i}),y) = \begin{cases} 
--\log(h_{\theta}(x)) & y=1 \\
--\log(1-h_{\theta}(x)) & y=0
-\end{cases}</script><p>合并为：$ cost(h_{\theta}(x^{i}),y)= -y\log(h_{\theta}(x))-(1-y)\log(1-h_{\theta}(x)) $</p>
-<p>理解该公式并不难，当y=1时如果预测y=0，则说明$h_{\theta}(x)$趋近于0，根据 $-\log(h_{\theta}(x))$可知代价函数趋近于无穷大，这样就可以定量的衡量预测准度问题，而且该代价函数可以求导求最值。</p>
-<p><strong>最后</strong><br>    假设函数我们有了，代价函数我们也有了，如何得到最佳的参数就是最后一步了。本文采用梯度下降算法，对代价函数进行迭代求最值，不断迭代直到找到最值。在实际操作过程中不需要找到最值，只需要本次迭代的代价函数和下一次迭代的代价函数之间差值足够小即可。</p>
-<p><strong>梯度下降算法</strong></p>
-<pre><code> $$\theta_&#123;j&#125; =  \theta_&#123;j&#125;\frac&#123;1&#125;&#123;m&#125;\sum_&#123;i=1&#125;^&#123;m&#125;(h_&#123;\theta&#125;(x^&#123;i&#125;)-y^&#123;i&#125;)x_&#123;j&#125;^&#123;i&#125; $$ 
-</code></pre><p>通过该公式，一轮迭代为更新所有$\theta$值，在每一轮迭代的过程中$\theta$值不变。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上就是逻辑回归算法的总共过程，回过头来看其实和线性回归算法相似。</p>
-<ul>
-<li>确定假设函数</li>
-<li>确定代价函数</li>
-<li>如何根据代价函数求得最值（梯度下降）<br>这是一种思想，可以应用的各种相关的算法当中去。</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://github.com/GRfade/MachineLearning">逻辑回归代码实现</a><br>走过路过不要错过啊，各位大哥大姐进去点个star感激不尽。</p>
+<p>获得半结构化数据和非结构化数据后，进行<strong>属性抽取</strong>、<strong>关系抽取</strong>、<strong>实体抽取</strong>，这样获得结构化数据。</p>
+<p>结构化数据要进行<strong>共指解析</strong>和<strong>实体消歧</strong>。</p>
+<p><strong>共指解析</strong>：是指针对不同名称但却代表同一个实体，要能够识别出来，在知识图谱中认为是一个实体。例如：特朗普和第45任美国总统其实是指代一个人，共指解析要做的就是使这两个名称在知识图谱中为同一个实体。</p>
+<p><strong>实体消歧</strong>：是指针对相同名称但却代表不同实体，要能够识别出来，在知识图谱中认为是不同实体。例如：我想吃苹果的苹果，和乔布斯的苹果公司中的苹果，都是苹果但却代表不同实体。实体消歧要做的就是使同一个名称在知识图谱中为不同实体。</p>
+<p>这一切做完之后进行<strong>本体抽取</strong>。    </p>
+<p><strong>本体抽取</strong>：这里是将实体进行抽象化，是描述客观世界的抽象模型，也就是说是用于描述概念层次体系。例如：特朗普是一个人，同时也是美国总统，这里就可以抽象出，根节点是人，分之节点是总统。</p>
+<p>最后还有<strong>知识融合</strong>这一点，就是将多个知识库融合未一个知识库。</p>
+<h3 id="相关综述"><a href="#相关综述" class="headerlink" title="相关综述"></a>相关综述</h3><p>下面三篇综述网上均可下载，这里只是简单做一个总结，方便查看。</p>
+<h4 id="知识图谱构建技术综述"><a href="#知识图谱构建技术综述" class="headerlink" title="知识图谱构建技术综述"></a>知识图谱构建技术综述</h4><p><a target="_blank" rel="noopener" href="http://crad.ict.ac.cn/CN/Y2016/V53/I3/582">论文地址</a></p>
+<p><img src="/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱综述.png" alt="KG"></p>
+<h4 id="知识推理与知识图谱补全的区别"><a href="#知识推理与知识图谱补全的区别" class="headerlink" title="知识推理与知识图谱补全的区别"></a>知识推理与知识图谱补全的区别</h4><h6 id="知识推理"><a href="#知识推理" class="headerlink" title="知识推理"></a>知识推理</h6><p>知识推理本来是作为人类问题求解的主要方法，与知识图谱并无太大关系，它是人类思考世界的一种手段，如传统的三段论就是知识推理的一个例子。</p>
+<p>但是随着知识图谱的出现后，人们发现知识推理可以应用到知识图谱补全上面去，所以知识图谱补全常常代表了知识推理，反之也是。</p>
+<h6 id="知识图谱补全"><a href="#知识图谱补全" class="headerlink" title="知识图谱补全"></a>知识图谱补全</h6><p>知识图谱补全是指针对知识图谱本身的不完善所进行的一种补全或者完善。他本质来说只是一个目的，为了达到知识图谱补全的目的可以使用许多技术，可以结合神经网络、结合深度学习甚至结合图论知识，其中知识推理是作为其中的一种手段来达到知识图谱补全的目的。</p>
+<p>随着研究不断深入，这种界限不断模糊，而且知识推理本身也在发展，所以就和知识图谱补全不断混合，在概念上不那么清晰了。</p>
+<h4 id="面向知识图谱的知识推理研究进展"><a href="#面向知识图谱的知识推理研究进展" class="headerlink" title="面向知识图谱的知识推理研究进展"></a>面向知识图谱的知识推理研究进展</h4><p><a target="_blank" rel="noopener" href="http://www.jos.org.cn/ch/reader/download_pdf_file.aspx?journal_id=jos&amp;file_name=88D0BB702E5C1707DA216DE97314F1CF19E0198366EB5D1339637436907FFDB0C804513066A5BF65B9CAC404FFF1CEF8&amp;open_type=self&amp;file_no=5551">论文地址</a></p>
+<p><img src="/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱推理.png" alt="KG"></p>
+<h4 id="大规模知识图谱补全技术的研究进展"><a href="#大规模知识图谱补全技术的研究进展" class="headerlink" title="大规模知识图谱补全技术的研究进展"></a>大规模知识图谱补全技术的研究进展</h4><p><a target="_blank" rel="noopener" href="http://scis.scichina.com/cn/2020/N112018-00225.pdf">论文地址</a></p>
+<p><img src="/2021/01/08/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BB%BC%E8%BF%B0/知识图谱补全.png" alt="KG"></p>
 
     </div>
 
@@ -315,8 +302,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
-              <a href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag"># 监督学习</a>
+              <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag"># 知识图谱</a>
+              <a href="/tags/%E7%BB%BC%E8%BF%B0/" rel="tag"># 综述</a>
           </div>
 
         
@@ -325,13 +312,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/11/02/%E5%88%9D%E8%AF%86%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AF%87/" rel="prev" title="初识机器学习">
-      <i class="fa fa-chevron-left"></i> 初识机器学习
+    <a href="/2020/11/29/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%AE%97%E6%B3%95/" rel="prev" title="朴素贝叶斯算法">
+      <i class="fa fa-chevron-left"></i> 朴素贝叶斯算法
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/11/05/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" rel="next" title="浅谈线性回归算法">
-      浅谈线性回归算法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -391,7 +375,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%92%8C%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">线性回归和逻辑回归区别：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">分类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">逻辑回归：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number"></span> <span class="nav-text">原理简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">知识图谱简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%BB%BC%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">相关综述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%9E%84%E5%BB%BA%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">知识图谱构建技术综述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E6%8E%A8%E7%90%86%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.2.</span> <span class="nav-text">知识推理与知识图谱补全的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E6%8E%A8%E7%90%86"><span class="nav-number">3.2.0.1.</span> <span class="nav-text">知识推理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8"><span class="nav-number">3.2.0.2.</span> <span class="nav-text">知识图谱补全</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E6%8E%A8%E7%90%86%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95"><span class="nav-number">3.3.</span> <span class="nav-text">面向知识图谱的知识推理研究进展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E8%A7%84%E6%A8%A1%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%8A%80%E6%9C%AF%E7%9A%84%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95"><span class="nav-number">3.4.</span> <span class="nav-text">大规模知识图谱补全技术的研究进展</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

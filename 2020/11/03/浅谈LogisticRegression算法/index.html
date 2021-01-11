@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://grfade.github.io/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/different.png">
 <meta property="og:image" content="https://grfade.github.io/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/19104051-5f57e2a2e0624faf9644c3f57aec467b.png">
 <meta property="article:published_time" content="2020-11-03T09:32:07.000Z">
-<meta property="article:modified_time" content="2021-01-11T08:44:00.803Z">
+<meta property="article:modified_time" content="2021-01-11T08:50:13.860Z">
 <meta property="article:author" content="GR">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="监督学习">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-11 16:44:00" itemprop="dateModified" datetime="2021-01-11T16:44:00+08:00">2021-01-11</time>
+                <time title="修改时间：2021-01-11 16:50:13" itemprop="dateModified" datetime="2021-01-11T16:50:13+08:00">2021-01-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,7 +240,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -266,14 +266,14 @@
 <h3 id="二、逻辑回归"><a href="#二、逻辑回归" class="headerlink" title="二、逻辑回归"></a>二、逻辑回归</h3><h4 id="2-1-作用"><a href="#2-1-作用" class="headerlink" title="2.1 作用"></a>2.1 作用</h4><p>首先我先来阐述逻辑回归算法的作用，通过逻辑回归我能得到什么。</p>
 <p>如果我现在有m个n+1维数据，对于每一个数据前n维为该数据的各种特征，最后一维为对该数据的分类，而且该分类的特点是只有两个分类，即是和否的关系。</p>
 <p>现在我希望能通过一个算法预测下一个数据的分类，已知m个n+1维数据和下一个数据的n维特征，那么逻辑回归算法就是一个很好的算法。</p>
-<h4 id="2-2原理简介"><a href="#2-2原理简介" class="headerlink" title="2.2原理简介"></a>2.2原理简介</h4><p><strong>首先</strong>，借助某一个函数F实现分类器效果，即将数据集进行分类（二分类），对于该函数我们的要求为：可接受数据的所有特征作为输入，经过函数运算，实现输出为0或者1(即完成分类效果)</p>
+<h4 id="2-2原理简介"><a href="#2-2原理简介" class="headerlink" title="2.2原理简介"></a>2.2原理简介</h4><h5 id="首先"><a href="#首先" class="headerlink" title="首先"></a><strong>首先</strong></h5><p>借助某一个函数F实现分类器效果，即将数据集进行分类（二分类），对于该函数我们的要求为：可接受数据的所有特征作为输入，经过函数运算，实现输出为0或者1(即完成分类效果)</p>
 <p>符合上述要求的函数被称之为海维塞德阶跃函数（Heaviside step function）或者被称为单位阶跃函数。</p>
 <p>这里选择最具代表性的函数之一Sigmoid函数 ，通过sigmoid函数实现分类器效果,该函数如下所示：</p>
 <script type="math/tex; mode=display">h_\theta(x) = g (z) = \frac{1}{1+e^{-z}}         (1)</script><script type="math/tex; mode=display">z = \theta^{T}X    (2)</script><p><img src="/2020/11/03/%E6%B5%85%E8%B0%88LogisticRegression%E7%AE%97%E6%B3%95/19104051-5f57e2a2e0624faf9644c3f57aec467b.png" alt="sigmoid"></p>
 <p>如图可以显然看出对于$z\in R$映射在了（0,1）区间内，对于大于0.5的值可以视为标签为1，小于0.5的值视为标签为0。</p>
 <p>公式(1)被称之为假设函数，该函是一个分类器将数据导入该函数，若结果大于0.5则归为1类，若小于0.5则归为0类，而z的选择有多种，这里选择最简单的z=θ^T X方程。</p>
 <p>z=θ^T X被称之为决策边界，最简单的决策边界为一个超平面，若为复杂的决策边界，可以得到更加准确的分类。</p>
-<p><strong>其次</strong>，对于假设函数我们需要对其系数进行训练，来使其准确率获得上升，对其系数进行训练的也是通过某一个函数实现，衡量训练好坏的标准用一个函数表示，该函数一般称之为代价函数（Cost Function）,代价函数为关于参数的函数，自变量为参数，因变量为衡量参数是否准确的标准。</p>
+<h5 id="其次"><a href="#其次" class="headerlink" title="其次"></a><strong>其次</strong></h5><p>对于假设函数我们需要对其系数进行训练，来使其准确率获得上升，对其系数进行训练的也是通过某一个函数实现，衡量训练好坏的标准用一个函数表示，该函数一般称之为代价函数（Cost Function）,代价函数为关于参数的函数，自变量为参数，因变量为衡量参数是否准确的标准。</p>
 <p>代价函数通式为： <script type="math/tex">J(\theta) = \frac{1}{m} \sum_{i=1}^{m}cost(h_{\theta}(x^{i}),y)</script>,</p>
 <p>代价函数的构建有很多种。我认为要求有两个：</p>
 <ul>
@@ -286,10 +286,8 @@
 -\log(1-h_{\theta}(x)) & y=0
 \end{cases}</script><p>合并为：$ cost(h_{\theta}(x^{i}),y)= -y\log(h_{\theta}(x))-(1-y)\log(1-h_{\theta}(x)) $</p>
 <p>理解该公式并不难，当y=1时如果预测y=0，则说明$h_{\theta}(x)$趋近于0，根据 $-\log(h_{\theta}(x))$可知代价函数趋近于无穷大，这样就可以定量的衡量预测准度问题，而且该代价函数可以求导求最值。</p>
-<p><strong>最后</strong><br>    假设函数我们有了，代价函数我们也有了，如何得到最佳的参数就是最后一步了。本文采用梯度下降算法，对代价函数进行迭代求最值，不断迭代直到找到最值。在实际操作过程中不需要找到最值，只需要本次迭代的代价函数和下一次迭代的代价函数之间差值足够小即可。</p>
-<p><strong>梯度下降算法</strong></p>
-<pre><code> $$\theta_&#123;j&#125; =  \theta_&#123;j&#125;\frac&#123;1&#125;&#123;m&#125;\sum_&#123;i=1&#125;^&#123;m&#125;(h_&#123;\theta&#125;(x^&#123;i&#125;)-y^&#123;i&#125;)x_&#123;j&#125;^&#123;i&#125; $$ 
-</code></pre><p>通过该公式，一轮迭代为更新所有$\theta$值，在每一轮迭代的过程中$\theta$值不变。</p>
+<h5 id="最后"><a href="#最后" class="headerlink" title="最后"></a><strong>最后</strong></h5><p>假设函数我们有了，代价函数我们也有了，如何得到最佳的参数就是最后一步了。本文采用梯度下降算法，对代价函数进行迭代求最值，不断迭代直到找到最值。在实际操作过程中不需要找到最值，只需要本次迭代的代价函数和下一次迭代的代价函数之间差值足够小即可。</p>
+<h5 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a><strong>梯度下降算法</strong></h5><script type="math/tex; mode=display">\theta_{j} =  \theta_{j}\frac{1}{m}\sum_{i=1}^{m}(h_{\theta}(x^{i})-y^{i})x_{j}^{i}</script><p>通过该公式，一轮迭代为更新所有$\theta$值，在每一轮迭代的过程中$\theta$值不变。</p>
 <h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p>以上就是逻辑回归算法的总共过程，回过头来看其实和线性回归算法相似。</p>
 <ul>
 <li>确定假设函数</li>
@@ -392,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%92%8C%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%8C%BA%E5%88%AB"><span class="nav-text">一、线性回归和逻辑回归区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%E5%88%86%E7%B1%BB"><span class="nav-text">1.1分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="nav-text">二、逻辑回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E4%BD%9C%E7%94%A8"><span class="nav-text">2.1 作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-text">2.2原理简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-text">三、总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%92%8C%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%8C%BA%E5%88%AB"><span class="nav-text">一、线性回归和逻辑回归区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%E5%88%86%E7%B1%BB"><span class="nav-text">1.1分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="nav-text">二、逻辑回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E4%BD%9C%E7%94%A8"><span class="nav-text">2.1 作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-text">2.2原理简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A6%96%E5%85%88"><span class="nav-text">首先</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B6%E6%AC%A1"><span class="nav-text">其次</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-text">最后</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95"><span class="nav-text">梯度下降算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-text">三、总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
